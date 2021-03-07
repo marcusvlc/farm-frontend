@@ -1,0 +1,15 @@
+.field {
+    padding: 10px;
+}
+
+.input-form {
+    width: 80%;
+    float: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.register {
+    height: 20%;
+}
+

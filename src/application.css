@@ -1,0 +1,42 @@
+.field {
+    padding: 10px;
+}
+
+.input-form {
+    width: 80%;
+    float: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.register {
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5em;    
+    justify-content: space-around;
+
+}
+
+.register-content {
+    flex: 20%;
+    background-color: #ECECEC;
+    margin-left: 2em;
+    margin-right: 5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-bottom: 2em;
+    height: 100%;
+}
+
+.elements-table {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-content {
+    flex: 70%;
+    margin-right: 2em;
+}
