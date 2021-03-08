@@ -1,3 +1,3 @@
-export const API_URL = 'http://localhost:3333'
+export const API_URL = process.env.REACT_APP_API_URL
 
-export const GOOGLE_API_KEY = "AIzaSyC5ay-LqJdrc22VaXc8WG1vgWEAWx710Z8"
+export const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_KEY
