@@ -1,8 +1,6 @@
 import NavBarComponent from './components/Navbar'
-import Header from './components/Header'
-import RegisterField from './components/RegisterField'
+import HomePage from './components/HomePage'
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import RegisterHarvest from './components/RegisterHarvest';
 import MillPage from './components/MillPage'
 import React, { Component } from 'react'
 import io from 'socket.io-client'
@@ -36,7 +34,7 @@ class  App extends Component {
         <BrowserRouter>
           <NavBarComponent/>
             <Switch>
-              <Route path="/" exact component={() => <Header/>}/>
+              <Route path="/" exact component={() => <HomePage/>}/>
               <Route path="/register-farm" exact component={() => <FarmPage socket={this.state.socket}/>}/>
               <Route path="/register-field" exact component={() => <FieldPage socket={this.state.socket}/>}/>
               <Route path="/register-mill" exact component={() => <MillPage socket={this.state.socket} />}/>

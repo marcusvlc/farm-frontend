@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { getAllMills } from '../../services/millService'
-import { Table } from 'react-bootstrap'
+import { Table, Form } from 'react-bootstrap'
 import io from 'socket.io-client'
 import {API_URL as BASE_API_URL} from '../../services/variableService'
 import { notifyAlert } from '../../services/notificationService' 
@@ -9,7 +9,8 @@ class ListMills extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mills: []
+            mills: [],
+            filtered_mills: []
         }
 
         this.setMills = this.setMills.bind(this)
@@ -37,29 +38,46 @@ class ListMills extends Component {
   
     setMills = async () => {
         const mills = await getAllMills()
-        this.setState({mills: mills.data})
+        this.setState({mills: mills.data, filtered_mills: mills.data})
+    }
+
+
+    filterTable = (e) => {
+        e.preventDefault()
+        const searchedValue = document.getElementById("search-field").value
+        if(searchedValue.length) {
+            const newValues = this.state.mills.filter(mill => String(mill.name).indexOf(searchedValue) >= 0)
+            this.setState({filtered_mills: newValues})
+        } else {
+            this.setState({filtered_mills: this.state.mills})
+        }
     }
 
     render() {
         return (
-            <Table className="elements-table" striped bordered hover>
+            <div>
+                <div className="filter-content">
+                    <span className="filter-label">Pesquisar por nome</span>
+                    <Form.Control className="filter-input" id="search-field" onChange={(e)=>this.filterTable(e)} type="text" placeholder="Insira o nome" />
+                </div>
+                <Table className="elements-table" striped bordered hover>
                 <thead>
                     <tr>
-                    <th>#</th>
                     <th>Nome da Usina</th>
                     <th>Criada em</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.mills.map((mill, index) => (
+                    {this.state.filtered_mills.map((mill, index) => (
                         <tr key={mill.id}>
-                            <td>{index}</td>
                             <td>{mill.name}</td>
                             <td>{new Date(mill.createdAt).toLocaleDateString()}</td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
+            </div>
+            
         )
     }
 }
