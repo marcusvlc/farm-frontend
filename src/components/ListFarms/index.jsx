@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
-import { getAllMills } from '../../services/millService'
+import { getAllFarms } from '../../services/farmService'
 import { Table } from 'react-bootstrap'
 import io from 'socket.io-client'
 import {API_URL as BASE_API_URL} from '../../services/variableService'
 import { notifyAlert } from '../../services/notificationService' 
 
-class ListMills extends Component {
+class ListFarms extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mills: []
+            farms: []
         }
 
-        this.setMills = this.setMills.bind(this)
+        this.setFarms = this.setFarms.bind(this)
         this.connectToSocket = this.connectToSocket.bind(this)
 
     }
@@ -20,24 +20,24 @@ class ListMills extends Component {
     connectToSocket = () => {
         const socket = io(BASE_API_URL)
         socket.on('send_created_data', data => {
-            if (data.type == "mill") {
-                this.setState({mills: [...this.state.mills, data]})
-                notifyAlert(`Foi criada uma nova usina de ID ${data.id} e nome ${data.name}`)
+            if (data.type == "farm") {
+                this.setState({farms: [...this.state.farms, data]})
+                notifyAlert(`Foi criada uma nova fazenda de código ${data.code}`)
             }
         })
     }
 
     componentWillMount() {
-        this.setMills()
+        this.setFarms()
     }
 
     componentDidMount() {
         this.connectToSocket()
     }
   
-    setMills = async () => {
-        const mills = await getAllMills()
-        this.setState({mills: mills.data})
+    setFarms = async () => {
+        const farms = await getAllFarms()
+        this.setState({farms: farms.data})
     }
 
     render() {
@@ -45,17 +45,17 @@ class ListMills extends Component {
             <Table className="elements-table" striped bordered hover>
                 <thead>
                     <tr>
-                    <th>#</th>
-                    <th>Nome da Usina</th>
-                    <th>Criada em</th>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Código da safra</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.mills.map((mill, index) => (
-                        <tr key={mill.id}>
-                            <td>{index}</td>
-                            <td>{mill.name}</td>
-                            <td>{new Date(mill.createdAt).toLocaleDateString()}</td>
+                    {this.state.farms.map((farm) => (
+                        <tr key={farm.code}>
+                            <td>{farm.code}</td>
+                            <td>{farm.name}</td>
+                            <td>{farm.harvest_code}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -64,4 +64,4 @@ class ListMills extends Component {
     }
 }
 
-export default ListMills
+export default ListFarms

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { getAllHarvests } from '../../services/harvestService'
 import { Table } from 'react-bootstrap'
 import io from 'socket.io-client'
-import BASE_API_URL from '../../services/variableService'
+import {API_URL as BASE_API_URL} from '../../services/variableService'
 import { notifyAlert } from '../../services/notificationService' 
 
 class ListHarvest extends Component {

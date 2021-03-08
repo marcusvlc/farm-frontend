@@ -15,6 +15,9 @@ class NavBarComponent extends Component {
                 </Link>
             </Navbar.Brand>
             <Nav className="ml-auto">
+                <Link to='/register-farm'>
+                    <span className="navbar-element">Fazendas</span>
+                </Link>
                 <Link to='/register-field'>
                     <span className="navbar-element">Campos</span>
                 </Link>

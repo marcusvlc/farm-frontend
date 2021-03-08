@@ -1,3 +1,3 @@
-const API_URL = 'http://localhost:3333'
+export const API_URL = 'http://localhost:3333'
 
-export default API_URL
+export const GOOGLE_API_KEY = "AIzaSyC5ay-LqJdrc22VaXc8WG1vgWEAWx710Z8"

@@ -6,8 +6,10 @@ import RegisterHarvest from './components/RegisterHarvest';
 import MillPage from './components/MillPage'
 import React, { Component } from 'react'
 import io from 'socket.io-client'
-import BASE_API_URL from './services/variableService'
+import {API_URL as BASE_API_URL} from './services/variableService'
 import HarvestPage from './components/HarvestPage'
+import FarmPage from './components/FarmPage'
+import FieldPage from './components/FieldPage'
 
 class  App extends Component {
 
@@ -35,7 +37,8 @@ class  App extends Component {
           <NavBarComponent/>
             <Switch>
               <Route path="/" exact component={() => <Header/>}/>
-              <Route path="/register-field" exact component={() => <RegisterField/>}/>
+              <Route path="/register-farm" exact component={() => <FarmPage socket={this.state.socket}/>}/>
+              <Route path="/register-field" exact component={() => <FieldPage socket={this.state.socket}/>}/>
               <Route path="/register-mill" exact component={() => <MillPage socket={this.state.socket} />}/>
               <Route path="/register-harvest" exact component={() => <HarvestPage socket={this.state.socket}/>}/>
             </Switch>

@@ -1,4 +1,4 @@
-import API_URL  from './variableService'
+import {API_URL}  from './variableService'
 import  axios from 'axios' 
 
 const REGISTER_MILL_URL = '/mill'
