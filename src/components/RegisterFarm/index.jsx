@@ -77,7 +77,7 @@ class RegisterFarm extends Component {
                     <Form.Control className="input-form" required type="text" name="name" value={name} onChange={this.handleChange} placeholder="Insira um nome para sua fazenda" />
                 </Form.Group>
 
-                <Form.Label>Associe essa safra a uma usina</Form.Label>
+                <Form.Label>Associe essa fazenda a uma safra</Form.Label>
                 <Form.Control name="selected_harvest_id" value={selected_harvest_id} onChange={this.handleChange} as="select">
                     <option value="" >Selecione uma safra para continuar</option>
                     {this.state.harvests.map((harvest, index) => (
